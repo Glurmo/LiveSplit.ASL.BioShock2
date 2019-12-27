@@ -1,3 +1,17 @@
+/*
+Level flags:
+toy2.exe+12F0D8 - 15 byte array (level 1-15 status)
+
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+bits for each level byte: BossDead ? ? tok5 tok4 tok3 tok2 tok1
+
+e.g:
+  b10000000 => Boss dead
+  b00000001 => Token 1 collected
+  b00001101 => Tokens 1, 3 & 4 collected
+  b00011111 => All tokens collected
+*/
+
 state("toy2")
 {
 	byte levelID: 0xFCDC0;
