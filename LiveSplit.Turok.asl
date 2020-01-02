@@ -1,9 +1,25 @@
-state("sobek", "1.1")
+// Auto-start, reset, and split upon entering each level (and optionally each boss)
+// Supports steam version, patch 1.4.3 and 2.0. 
+
+// Fastest/last patch with jeep backstab (2015-12-18 release)
+// inside "TDH 1.1.7z" on speedrun.com or steam (steam://nav/console):
+//   download_depot 405820 405822 305215209689250894 (Windows Files)
+//   download_depot 405820 405821 7171797334604885018 (Game Files)
+state("sobek", "1.4.3")
 {
     string40 level: 0x27D764, 0x0, 0x0;
     string40 map: 0x27D740, 0x0;
     int health: 0x27DA3C, 0xE0;
-    int level8BossHealth:  0x27DBD4, 0xE0;
+    int level8BossHealth: 0x27DBD4, 0xE0;
+}
+
+// current patch (2018-06-21 release)
+state("sobek", "2.0")
+{
+    string40 level: 0x3AE25C, 0x0;
+    string40 map: 0x3936AC, 0x0;
+    int health: 0x390CF4, 0xE0;
+    int level8BossHealth: 0x393118, 0xE0;
 }
 
 start 
@@ -34,18 +50,17 @@ split
 {
     bool isLevelSplit = vars.shouldSplit(old.level, current.level);
     bool isMapSplit = vars.shouldSplit(old.map, current.map);
-    bool isFinalSplit = current.health > 0 && // don't split if we died
+    bool isFinalSplit = current.health > 0 && current.health <= 250 && // don't split if we died
                         (old.level8BossHealth > 0 && current.level8BossHealth == 0) &&
                         current.map == "levels/level00.map";
+
     return isLevelSplit || isMapSplit || isFinalSplit;
 }
 
 init
 {
     int memSize = modules.First().ModuleMemorySize;
-    if (memSize == 3047424) {
-        version = "1.1"; // executable from TDH 1.1.7z
-    }
+    version = memSize == 3047424 ? "1.4.3" : "2.0";
 }
 
 startup 
