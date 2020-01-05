@@ -17,7 +17,7 @@ state("sobek", "1.4.3")
 state("sobek", "2.0")
 {
     string40 level: 0x3AE25C, 0x0;
-    string40 map: 0x3936AC, 0x0;
+    string40 map: 0x38E3FC, 0x0;
     int health: 0x390CF4, 0xE0;
     int level8BossHealth: 0x393118, 0xE0;
 }
@@ -67,12 +67,13 @@ startup
 {
     vars.splits = new Dictionary<string, Dictionary<string, List<int>>>();
     vars.visited = new Dictionary<string, Dictionary<string, int>>();
+    vars.minLevelKeys = new Dictionary<string, int>();
 
-    settings.Add("split-boss", true, "Split Boss Entrances");
-    settings.Add("split-longhunter", true, "Longhunter", "split-boss");
-    settings.Add("split-mantis", true, "Mantis", "split-boss");
-    settings.Add("split-thunder", true, "Thunder", "split-boss");
-    settings.Add("split-campaigner", true, "Campaigner", "split-boss");
+    settings.Add("split-boss", false, "Split Boss Entrances");
+    settings.Add("split-longhunter", false, "Longhunter", "split-boss");
+    settings.Add("split-mantis", false, "Mantis", "split-boss");
+    settings.Add("split-thunder", false, "Thunder", "split-boss");
+    settings.Add("split-campaigner", false, "Campaigner", "split-boss");
 
     vars.trackSplit = (Action<string, string, int>)((from, to, visit) =>
     {
