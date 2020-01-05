@@ -67,7 +67,6 @@ startup
 {
     vars.splits = new Dictionary<string, Dictionary<string, List<int>>>();
     vars.visited = new Dictionary<string, Dictionary<string, int>>();
-    vars.minLevelKeys = new Dictionary<string, int>();
 
     settings.Add("split-boss", false, "Split Boss Entrances");
     settings.Add("split-longhunter", false, "Longhunter", "split-boss");
