@@ -43,7 +43,7 @@ start
 
 reset 
 {
-    return old.level != "title" && current.level == "title";
+    return settings["reset-title"] && old.level != "title" && current.level == "title";
 }
 
 split 
@@ -73,6 +73,9 @@ startup
     settings.Add("split-mantis", false, "Mantis", "split-boss");
     settings.Add("split-thunder", false, "Thunder", "split-boss");
     settings.Add("split-campaigner", false, "Campaigner", "split-boss");
+    settings.Add("misc", true, "Misc");
+    settings.Add("reset-title", true, "Reset on Titlescreen", "misc");
+    settings.SetToolTip("reset-title", "Disable this if you don't want the timer to reset if you game over");
 
     vars.trackSplit = (Action<string, string, int>)((from, to, visit) =>
     {
