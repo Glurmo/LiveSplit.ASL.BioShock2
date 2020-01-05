@@ -2,9 +2,9 @@
 // Supports steam version, patch 1.4.3 and 2.0. 
 
 // Fastest/last patch with jeep backstab (2015-12-18 release)
-// inside "TDH 1.1.7z" on speedrun.com or steam (steam://nav/console):
-//   download_depot 405820 405822 305215209689250894 (Windows Files)
-//   download_depot 405820 405821 7171797334604885018 (Game Files)
+// inside "TDH 1.1.7z" on speedrun.com or through steam console (steam://nav/console):
+//   download_depot 405820 405822 305215209689250894 (1.4.3 Windows Files)
+//   download_depot 405820 405821 7171797334604885018 (1.4.3 Game Files)
 state("sobek", "1.4.3")
 {
     string40 level: 0x27D764, 0x0, 0x0;
