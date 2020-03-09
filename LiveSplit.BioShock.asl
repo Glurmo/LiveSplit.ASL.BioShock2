@@ -12,6 +12,11 @@ startup
 {
 	settings.Add("splitcrash", false, "Split Crash Site");
 	settings.Add("splitfarmers", false, "Split Farmer's Market");
+	vars.splitMaps = new List<string>();
+}
+
+start 
+{
 	vars.splitMaps = new List<string>() 
 	{
 		"1-welcome",    // Welcome to Rapture
@@ -28,14 +33,8 @@ startup
 		"7-gauntlet",   // Proving Grounds
 		"7-BossFight",  // Fontaine
 	};
-}
-
-start 
-{
-	vars.splitMaps.Remove("0-lighthouse");
+	
 	if (settings["splitcrash"]) vars.splitMaps.Add("0-lighthouse"); // Crash Site
-
-	vars.splitMaps.Remove("3-market");
 	if (settings["splitfarmers"]) vars.splitMaps.Add("3-market"); // Farmer's Market
 
 	return current.mapName == "0-lighthouse";
